@@ -12,7 +12,7 @@
 </template>
 
 <script setup>
-import { ref, watch, computed } from 'vue'
+import { ref, watch, computed, onBeforeUnmount } from 'vue'
 import JSConfetti from 'js-confetti'
 
 
@@ -36,7 +36,6 @@ const wait = (ms) => new Promise((resolve) => setTimeout(resolve, ms))
 
   watch(checkedWords, async () => {
     if (checkedWords.value.length === words.value.length) {
-      await wait(500)
       winnerFound.value = true
       while (winnerFound.value) {
         await jsConfetti.addConfetti({
@@ -103,6 +102,10 @@ const wait = (ms) => new Promise((resolve) => setTimeout(resolve, ms))
   
   const words = computed(() => possibleWords[name])
 
+  onBeforeUnmount(() => {
+    reset()
+  })
+
 </script>
 <style scoped>
 h1,
@@ -128,6 +131,7 @@ h3 {
 
 .board {
   display: grid;
+  grid-gap: 4px;
   color: var(--custom-color-brand);
   grid-template-rows: repeat(9, 1fr);
 }
@@ -147,11 +151,13 @@ label {
   justify-content: center;
   align-items: center;
   cursor: pointer;
-  margin-block: 4px;
+  margin: 0;
+
 
 }
 
 input[type='checkbox'] {
+  display: none;
   appearance: none;
   padding: 0;
   border: none;
@@ -167,6 +173,8 @@ label:has(input[type='checkbox']:checked) {
 .cell {
   border: 1px solid var(--custom-color-brand);
   font-size: 2rem;
+
+
   height: 65px;
 }
 </style>
