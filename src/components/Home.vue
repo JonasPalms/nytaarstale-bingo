@@ -1,6 +1,6 @@
 <template>
   <h1>Velkommen til Hans Kongelige Højheds Nytårstale-Bingo 🤴🏻</h1>
-  <h2>Identifér dem selv!</h2>
+  <h2>Identificér dem selv omgående!</h2>
   <ul>
     <RouterLink v-for="name in names" :key="name" :to="`/${name.toLowerCase()}`">
       {{ name }}
