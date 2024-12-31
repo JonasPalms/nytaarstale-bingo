@@ -1,14 +1,15 @@
 <template>
+  <template v-if="!winnerFound">
     <h1>Her er din plade, {{ firstName }}</h1>
-      <div v-if="!winnerFound" class="board">
-        <label v-for="word in words" class="cell"><input type="checkbox" :value="word" v-model="checkedWords" />{{ word }}</label>
-      </div>
-      <div v-else class="winner">
-        <h2>Jaaaaaaa, du har vundet!</h2>
-        <button @click="reset()">Spil igen</button>
-      </div>
-
-      <h3>Resultat: {{ checkedWords.length }} / {{ words.length }}</h3>
+    <div class="board">
+      <label v-for="word in words" class="cell"><input type="checkbox" :value="word" v-model="checkedWords" />{{ word }}</label>
+    </div>
+    <h3>Resultat: {{ checkedWords.length }} / {{ words.length }}</h3>
+  </template>
+    <div v-else class="winner">
+      <h1>Jaaaaaaa, du har vundet! 🎉</h1>
+      <button @click="reset()">Spil igen</button>
+    </div>
 </template>
 
 <script setup>
