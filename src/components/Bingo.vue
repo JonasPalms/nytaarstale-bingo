@@ -43,7 +43,7 @@ const wait = (ms) => new Promise((resolve) => setTimeout(resolve, ms))
         await jsConfetti.addConfetti({
           emojis: ['🎉', '🍾', '🤴🏻'],
           confettiRadius: 15,
-          confettiNumber: 100,
+          confettiNumber: 80,
         })
       }
     }
