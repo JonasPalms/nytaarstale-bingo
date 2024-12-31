@@ -7,6 +7,8 @@
         <h2>Jaaaaaaa, du har vundet!</h2>
         <button @click="reset()">Spil igen</button>
       </div>
+
+      <h3>Resultat: {{ checkedWords.length }} / {{ words.length }}</h3>
 </template>
 
 <script setup>
@@ -104,7 +106,8 @@ const wait = (ms) => new Promise((resolve) => setTimeout(resolve, ms))
 </script>
 <style scoped>
 h1,
-h2 {
+h2,
+h3 {
   text-align: center;
 }
 
@@ -123,19 +126,19 @@ h2 {
   }
 }
 
-@media only screen and (min-width: 60em) {
-
-  /* 960px */
-  .board {
-    grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: repeat(3, 1fr);
-  }
-}
-
 .board {
   display: grid;
   color: var(--custom-color-brand);
   grid-template-rows: repeat(9, 1fr);
+}
+
+@media only screen and (min-width: 60em) {
+
+  /* 960px */
+  .board {
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+  }
 }
 
 label {
@@ -145,6 +148,7 @@ label {
   align-items: center;
   cursor: pointer;
   margin-block: 4px;
+
 }
 
 input[type='checkbox'] {
