@@ -24,6 +24,7 @@ const reset = () => {
   checkedWords.value = []
   winnerFound.value = false
 }
+
 const firstName = name[0].toUpperCase() + name.slice(1)
 
 const jsConfetti = new JSConfetti()
@@ -36,6 +37,7 @@ const wait = (ms) => new Promise((resolve) => setTimeout(resolve, ms))
 
   watch(checkedWords, async () => {
     if (checkedWords.value.length === words.value.length) {
+      await wait(400)
       winnerFound.value = true
       while (winnerFound.value) {
         await jsConfetti.addConfetti({
@@ -173,8 +175,6 @@ label:has(input[type='checkbox']:checked) {
 .cell {
   border: 1px solid var(--custom-color-brand);
   font-size: 2rem;
-
-
   height: 65px;
 }
 </style>
